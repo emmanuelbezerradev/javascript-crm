@@ -22,7 +22,18 @@
                 Clientes
                 <button onclick="mostrarOverlay()" class="bg-pink-600 leading-[40px] rounded text-white px-6 text-[12px] uppercase font-bold hover:bg-pink-700 duration-200">Novo cliente</button>
             </h2>
-
+            <table class="w-full mt-4 rounded overflow-hidden">
+                <thead class="bg-pink-600 text-white *:leading-[40px]">
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Última Compra</th>
+                    <th class="w-[100px] flex justify-center gap-4">Ações</th>
+                </thead>
+                <tbody id="tabela" class="[&>*:nth-child(even)]:bg-black/5">
+                    
+                </tbody>
+            </table>
             <div onclick="mostrarOverlay()" id="overlay" class="w-full h-full bg-black/70 absolute top-0 left-0 duration-200 opacity-0 invisible"></div>
             <div id="gaveta" class="min-w-[350px] h-full bg-white p-4 absolute top-0 -right-full duration-200">
                 <h3 class="flex justify-between items-center">
@@ -32,5 +43,6 @@
 
     </div>
     <script src="index.js"></script>
+    <script src="clientes.js"></script>
 </body>
 </html>
