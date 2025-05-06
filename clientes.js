@@ -1,26 +1,8 @@
-let clientes = [
-    {
-        nome: "Conrado",
-        email: "c@gmail.com",
-        telefone: "(85)9.99850-0344",
-        data: "05/05/05",
-    },
-    {
-        nome: "Emmanuel",
-        email: "emmanuel@gmail.com",
-        telefone: "(85)9.99850-0344",
-        data: "05/05/05",
-    },
-    {
-        nome: "Ana",
-        email: "ana@gmail.com",
-        telefone: "(85)9.99850-0344",
-        data: "05/05/05",
-    }
-]
+let clientes = sessionStorage.getItem("clientes") ? JSON.parse(sessionStorage.getItem("clientes")) : [];
 
 function carregarClientes(listaDeClientes){
     let tbodyElement = document.querySelector("#tabela");
+    tbodyElement.innerHTML = '';
     listaDeClientes.map((cliente) => {
         tbodyElement.innerHTML += `
         <tr class="*:leading-[40px]">
@@ -37,4 +19,18 @@ function carregarClientes(listaDeClientes){
     })
 }
 
-carregarClientes(clientes)
+carregarClientes(clientes);
+
+function cadastrarCliente(form){
+    event.preventDefault();
+
+    //vão pegar os valores dos inputs do formulario e transformar em um objeto
+    let formData = new FormData(form)
+    let cliente = Object.fromEntries(formData.entries());
+    
+    //inserir o novo cliente no final do array clientes
+    clientes.push(cliente);
+    sessionStorage.setItem("clientes", JSON.stringify(clientes));
+    mostrarOverlay();
+    carregarClientes(clientes);
+}
